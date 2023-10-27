@@ -14,7 +14,23 @@ sharks_df = pd.read_csv(url)
 #we need to drop the columns that don't contain
 #info that we need or do now have values at all
 
+def cleaning(shark_df):
+    sharks_df = drop_columns(sharks_df)
+    sharks_df = columns_lower(sharks_df)
+    sharks_df = drop_na(sharks_df)
+    sharks_df = fill_na(sharks_df)
+    sharks_df = activity_mapping(sharks_df)
+    sharks_df = injury_cleaning(sharks_df)
+    sharks_df = activity_clean(sharks_df)
+    sharks_df = gender_clean(sharks_df)
+    return shark_df
 
+def display(shark_df):    
+    sharks_df = display_type(sharks_df)
+    sharks_df = display_country(sharks_df)
+    sharks_df = display_sex(sharks_df)
+    return shark_df
+    
 def drop_columns():
 
     sharks_df.drop("pdf", axis='columns',inplace=True)
@@ -45,7 +61,7 @@ def columns_lower():
 
 def drop_na():
 
-sharks_df.dropna(how='all', inplace=True)
+    sharks_df.dropna(how='all', inplace=True)
 
     return sharks_df
 
@@ -60,15 +76,15 @@ sharks_df.dropna(how='all', inplace=True)
 
 def fill_na():
 
-sharks_df['state'].fillna('N',inplace=True)
-sharks_df['location'].fillna('N',inplace=True)
-sharks_df['injury'].fillna('N',inplace=True)
-sharks_df['year'].fillna('N',inplace=True)
-sharks_df['name'].fillna('N',inplace=True)
-sharks_df['activity'].fillna('N',inplace=True)
-sharks_df['time'].fillna('N',inplace=True)
-sharks_df['age'].fillna('N',inplace=True)
-sharks_df['species '].fillna('N',inplace=True)
+    sharks_df['state'].fillna('N',inplace=True)
+    sharks_df['location'].fillna('N',inplace=True)
+    sharks_df['injury'].fillna('N',inplace=True)
+    sharks_df['year'].fillna('N',inplace=True)
+    sharks_df['name'].fillna('N',inplace=True)
+    sharks_df['activity'].fillna('N',inplace=True)
+    sharks_df['time'].fillna('N',inplace=True)
+    sharks_df['age'].fillna('N',inplace=True)
+    sharks_df['species '].fillna('N',inplace=True)
 
     return sharks_df
 
